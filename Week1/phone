@@ -1,0 +1,19 @@
+if [ $# -lt 1 ]
+then
+	echo "Usage: phone searchfor [...searchfor] (You didn't tell me what you want to search for.)"
+else
+	int=1
+        a=1
+	for Each in $@
+	do
+		if [ $int != 1 ]
+		then
+			Edited+="|$Each"
+		else
+			Edited+="$Each"
+		fi
+		int=$(($int+$a))
+	done
+	egrep -i "$Edited" mydata > tmp
+	awk -f display.awk tmp
+fi
